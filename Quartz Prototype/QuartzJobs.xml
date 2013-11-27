@@ -1,0 +1,35 @@
+﻿<?xml version="1.0"?>
+<job-scheduling-data xmlns="http://quartznet.sourceforge.net/JobSchedulingData"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ 				version="2.0">
+  <processing-directives>
+    <overwrite-existing-data>true</overwrite-existing-data>
+  </processing-directives>
+
+  <schedule>
+    <job>
+      <name>AddValue</name>
+      <group>MigrationJobs</group>
+      <description>Addsavaluetoaninteger</description>
+      <job-type>QuartzPrototype.MyQuartz.Jobs.AddValueJob, QuartzPrototype</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+      <job-data-map>
+        <entry>
+          <key>ValueToAdd</key>
+          <value>1</value>
+        </entry>
+      </job-data-map>
+    </job>
+    <trigger>
+      <cron>
+        <name>AddValueTrigger</name>
+        <group>MigrationTriggers</group>
+        <description>AddValueTrigger</description>
+        <job-name>AddValue</job-name>
+        <job-group>MigrationJobs</job-group>
+        <cron-expression>0/1 * * * * ?</cron-expression>
+      </cron>
+    </trigger>
+  </schedule>
+</job-scheduling-data>
